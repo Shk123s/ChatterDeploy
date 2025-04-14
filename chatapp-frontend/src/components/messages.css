@@ -1,0 +1,83 @@
+.main-message-container {
+  padding: 1rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  overflow: auto;
+  height: calc(100vh - 10vh); /* Adjust according to other UI elements */
+  padding: 10px;
+  overflow-y: auto;
+  width: 100%;
+  /* height: calc(100vh - 15vh); */
+  &::-webkit-scrollbar {
+    width: 0.2rem;
+    &-thumb {
+      background-color: #ffffff39;
+      width: 0.1rem;
+      border-radius: 1rem;
+    }
+  }
+}
+.content {
+  max-width: 60%; /* Adjusted from 40% */
+  @media screen and (max-width: 720px) {
+    max-width: 80%; /* Larger width for smaller screens */
+  }
+}
+
+.message {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  .content {
+    max-width: 40%;
+    overflow-wrap: break-word;
+    padding: 1rem;
+    font-size: 1.1rem;
+    border-radius: 1rem;
+    /* color: #d1d1d1; */
+    @media screen and (min-width: 720px) and (max-width: 1080px) {
+      max-width: 70%;
+    }
+  }
+}
+
+.sended {
+  justify-content: flex-end;
+  .content {
+    background-color: #4f04ff21;
+  }
+}
+
+.recieved {
+  justify-content: flex-start;
+  .content {
+    background-color: #9900ff20;
+  }
+}
+
+.sended .content {
+  margin-left: auto; /* Push content to the right */
+}
+.recieved .content {
+  margin-right: auto; /* Push content to the left */
+}
+.message {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.message .content {
+  max-width: 40%;
+  overflow-wrap: break-word;
+  padding: 1rem;
+  font-size: 1.1rem;
+  border-radius: 1rem;
+  background-color: #97aff5;
+  /* Only apply styling if content exists */
+}
+
+.message .content:empty {
+  display: none; /* Hide empty content */
+}

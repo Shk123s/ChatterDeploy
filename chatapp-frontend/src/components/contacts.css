@@ -1,0 +1,114 @@
+.contacts-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 360px;
+  overflow-y: auto;
+  height: 100vh;
+  background-color: #edf3f8;
+  position: sticky;
+  top: 0;
+}
+
+.usercard-container {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: row;
+  background-color: #9fb1d5;
+  align-items: center;
+  padding: 5px 10px;
+  gap: 15px;
+  height: 80px;
+  width: 320px;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+}
+.usercard-container img {
+  width: 50px;
+  border-radius: 100%;
+}
+.usercard-details {
+  flex-direction: column;
+  align-items: start;
+  justify-content: start;
+  display: flex;
+  gap: 0;
+  padding: 0;
+  width: 160px;
+  margin: 0;
+  top: 0;
+  p {
+    margin: 0;
+    margin-bottom: 5px;
+    font-size: 16px;
+  }
+  span {
+    margin-bottom: 5px;
+    font-size: 12px;
+  }
+}
+
+.usercard-container .usercard-message-timing {
+  margin-bottom: 2rem;
+  font-size: 12px;
+}
+
+.contact-heading {
+  top: 0;
+  position: sticky;
+  background-color: #DEE5D4;
+  width: 100%;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: rgba(33, 35, 38, 0.1) 0px 10px 10px -10px;
+}
+
+
+.contact-heading input {
+  padding: 10px 20px;
+  width: 95%;
+  font-size: 14px;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.06) 0px 2px 4px 0px inset;
+} 
+
+.contacts-container .loader {
+  align-items: center;
+  margin: 20rem;
+}
+
+.create-group-btn{
+  float: left;
+  margin-left: 2px;
+}
+
+.contact-heading .groupIconDiv span {
+  margin: 4px; 
+}
+.groupIconDiv button{
+  background-color: none !important;
+}
+.contact-heading .createChat {
+  align-items: center;
+  margin-left: 35px;
+  top: 60px;
+  position: absolute;
+}
+
+.contact-item {
+  padding:2px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.contact-item:hover {
+  background-color: #f2f2f2;
+}
+
+.contact-item.selected {
+  background-color: #d1e7ff; 
+  border-left: 4px solid #007bff; 
+  border-radius: 4px;
+
+}

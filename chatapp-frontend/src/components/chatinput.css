@@ -1,0 +1,23 @@
+.message-input {
+  height: auto;
+  background: aliceblue;
+  display: flex;
+  align-items: end;
+  margin-bottom: 10px;   
+  bottom: 0;
+  position: sticky;
+}
+
+.message-input input {
+  padding: 10px 30px;
+  width: 95%;
+  height: 50px;
+  font-size: 1rem;
+  border-radius: 2px;
+  border: 1px solid rgb(223, 226, 231);
+  background-color: rgb(246, 244, 244);
+}
+
+.message-input input:focus {
+  border: 1px solid rgb(223, 226, 231);
+}

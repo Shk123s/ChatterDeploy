@@ -1,0 +1,96 @@
+version: '3'
+
+services:
+  app1:
+    build:
+      context: ./chatapp-server
+    container_name: app1
+    ports:
+      - "8001:8000" 
+    environment:
+      - PORT=8001
+      - APP_NAME=App1
+      - FRONTEND_BASE_URL=http://localhost:5173
+      - DB_URL=mongodb+srv://shaqeebsk1234:3hHFxs8LAq9Drnas@cluster0.au4cd8l.mongodb.net/Chatter
+    expose:
+      - "8001"
+    networks:
+      - mern_network
+
+  app2:
+    build:
+      context: ./chatapp-server
+    container_name: app2
+    ports:
+      - "8002:8000"
+    environment:
+      - PORT=8002
+      - APP_NAME=App2
+      - FRONTEND_BASE_URL=http://localhost:5173
+      - DB_URL=mongodb+srv://shaqeebsk1234:3hHFxs8LAq9Drnas@cluster0.au4cd8l.mongodb.net/Chatter
+    expose:
+      - "8002"
+    networks:
+      - mern_network
+
+  app3:
+    build:
+      context: ./chatapp-server
+    container_name: app3
+    ports:
+      - "8003:8000"
+    environment:
+      - PORT=8003
+      - APP_NAME=App3
+      - FRONTEND_BASE_URL=http://localhost:5173
+      - DB_URL=mongodb+srv://shaqeebsk1234:3hHFxs8LAq9Drnas@cluster0.au4cd8l.mongodb.net/Chatter
+    expose:
+      - "8003"
+    networks:
+      - mern_network
+
+  nginx:
+    build:
+      context: .
+      dockerfile: nginx/Dockerfile
+    container_name: nginx
+    ports:
+      - "80:80"
+    depends_on:
+      - app1
+      - app2
+      - app3
+    networks:
+      - mern_network
+
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb_server
+    networks:
+      - mern_network
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+    ports:
+      - "27018:27017"
+    volumes:
+      - mydata:/data/db
+
+  client:
+    build:
+      context: ./chatapp-frontend
+    container_name: frontend
+    ports:
+      - "5173:80"
+    networks:
+      - mern_network
+    depends_on:
+      - app1
+      - mongodb
+
+networks:
+  mern_network:
+    driver: bridge
+
+volumes:
+  mydata:

@@ -1,0 +1,65 @@
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5); 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background-color: white; 
+    padding: 20px;
+    border-radius: 8px; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+    width: 400px;
+    max-width: 90%;
+}
+
+.message-input {
+    display: flex;
+    align-items: center; 
+    
+}
+
+.message-input input {
+    flex-grow: 1; 
+    padding: 10px; 
+    border: 1px solid #ccc;  
+    border-radius: 20px;
+}
+
+.message-input input::placeholder {
+    color: #aaa; 
+}
+
+.message-input svg {
+    margin-left: 10px; 
+}
+.onlineUser {
+    display: flex;
+    flex-direction: row; 
+    flex-wrap: wrap; 
+    align-items: center; 
+    justify-content: center;
+}
+.loader{
+    margin-top: 10px;
+}
+
+/* Custom blue toast notification */
+.Toastify__toast--custom-blue {
+    background-color:#8EACCD !important; /* Blue background */
+    color: rgb(0, 0, 0) !important; 
+    font-size: larger !important;          /* White text */
+  }
+  
+  /* Custom black progress bar */
+  .Toastify__progress-bar--custom-black {
+    background-color: black !important;
+  }
+  
