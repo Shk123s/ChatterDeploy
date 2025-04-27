@@ -1,12 +1,10 @@
-version: '3'
-
 services:
   app1:
     build:
       context: ./chatapp-server
     container_name: app1
     ports:
-      - "8001:8000" 
+      - "8001:8001"
     environment:
       - PORT=8001
       - APP_NAME=App1
@@ -22,7 +20,7 @@ services:
       context: ./chatapp-server
     container_name: app2
     ports:
-      - "8002:8000"
+      - "8002:8002"
     environment:
       - PORT=8002
       - APP_NAME=App2
@@ -38,7 +36,7 @@ services:
       context: ./chatapp-server
     container_name: app3
     ports:
-      - "8003:8000"
+      - "8003:8003"
     environment:
       - PORT=8003
       - APP_NAME=App3
@@ -48,7 +46,16 @@ services:
       - "8003"
     networks:
       - mern_network
-
+  client:
+    build:
+      context: ./chatapp-frontend
+    container_name: frontend
+    ports:
+      - "5173:80"
+    networks:
+      - mern_network
+    depends_on:
+      - app1
   nginx:
     build:
       context: .
@@ -76,17 +83,7 @@ services:
     volumes:
       - mydata:/data/db
 
-  client:
-    build:
-      context: ./chatapp-frontend
-    container_name: frontend
-    ports:
-      - "5173:80"
-    networks:
-      - mern_network
-    depends_on:
-      - app1
-      - mongodb
+ 
 
 networks:
   mern_network:
@@ -94,3 +91,10 @@ networks:
 
 volumes:
   mydata:
+
+
+  # env_file: .env
+  #   environment:
+  #     PORT: 8000
+  #     FRONTEND_BASE_URL: http://localhost:5173
+  #     DB_URL: mongodb+srv://shaqeebsk1234:3hHFxs8LAq9Drnas@cluster0.au4cd8l.mongodb.net/Chatter

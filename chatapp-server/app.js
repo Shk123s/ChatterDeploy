@@ -36,26 +36,21 @@ const appName = process.env.APP_NAME || "Unknown";
 // "localhost:81","localhost:82","localhost:83"];
 
 const corsOptions = {
-  origin: function (origin, callback) {
-    if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error("❌ Not allowed by CORS"));
-    }
-  },
+  origin: "*",  // This allows all origins
   methods: ["GET", "POST"],
-  credentials: true,
+  credentials: true,  // Enable credentials if needed (e.g., cookies)
 };
+
+app.use(cors(corsOptions)); // for Express API
+
+const io = new Server(server, {
+  cors: corsOptions,  // For Socket.io as well
+  pingTimeout: 60000,
+  transports: ["websocket", "polling"],  // WebSocket and long-polling
+});
 
 // Apply CORS to Express & Socket.io
 // app.use(cors(corsOptions));
-app.use(cors());
-
-const io = new Server(server, {
-  cors: corsOptions,
-  pingTimeout: 60000,
-  transports: ["websocket", "polling"],
-});
 
 app.get("/", (req, res) => {
   res.send(`Hello from ${appName}`);

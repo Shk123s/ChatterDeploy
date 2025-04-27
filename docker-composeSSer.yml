@@ -1,0 +1,55 @@
+services:
+  server:
+    build:
+      context: ./chatapp-server
+      dockerfile: Dockerfile
+    container_name: backend
+    ports:
+      - "8000:8000"
+    networks:
+      - mern_network
+    depends_on:
+      - mongodb
+
+  client:
+    build:
+      context: ./chatapp-frontend
+      dockerfile: Dockerfile
+    container_name: frontend
+    networks:
+      - mern_network
+    depends_on:
+      - server
+
+  nginx:
+    build:
+      context: .
+      dockerfile: nginx/Dockerfile
+    container_name: nginx
+    ports:
+      - "80:80"
+    depends_on:
+      - client
+      - server
+    networks:
+      - mern_network
+
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb_server
+    ports:
+      - "27018:27017"
+    networks:
+      - mern_network
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+    volumes:
+      - mydata:/data/db
+
+networks:
+  mern_network:
+    driver: bridge
+
+volumes:
+  mydata:
